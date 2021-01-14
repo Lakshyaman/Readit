@@ -1,4 +1,5 @@
-import { Index } from "typeorm";
+import { IsEmail, Min } from "class-validator";
+import { CreateDateColumn, Index, UpdateDateColumn } from "typeorm";
 import { BaseEntity } from "typeorm";
 import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
 
@@ -10,17 +11,27 @@ export class User extends BaseEntity {
         Object.assign(this, user)
     }
     @PrimaryGeneratedColumn()
-    id: number;
+    id: number
 
     @Index()
+    @IsEmail()
     @Column({ unique: true })
-    email: string;
+    email: string
 
     @Index()
+    @Min(3, { message: 'Username must be at least 3 characters' })
     @Column({ unique: true })
-    username: string;
+    username: string
 
     @Column()
-    password: string;
+    @Min(3)
+    password: string
+
+
+    @CreateDateColumn()
+    createAt: Date
+
+    @UpdateDateColumn()
+    updatedAt: Date
 
 }

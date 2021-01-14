@@ -1,5 +1,6 @@
 import { Request, Response, Router } from "express";
 import { User } from "../entities/User";
+import { validate } from 'class-validator'
 
 
 
@@ -20,6 +21,9 @@ const register = async (req: Request, res: Response) => {
 
         //Create the user
         const user = new User({ email, username, password })
+        const errors = await validate(user)
+        if(errors.length > 0)return res.status(400).json({errors})
+        await user.save()
         //return the user
         return res.json(user)
     } catch(err) {
