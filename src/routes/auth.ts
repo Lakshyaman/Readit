@@ -18,12 +18,23 @@ const register = async (req: Request, res: Response) => {
 
     try{
         //Validate Data
+        let errorss: any = {}
+        const emailUser = await User.findOne({ email })
+        const usernameUser = await User.findOne({ username })
 
+        if(emailUser) errorss.email = 'Email is already taken'
+        if(usernameUser) errorss.username = 'Username is already taken'
+
+        if(Object.keys(errorss).length > 0){
+            return res.status(400).json(errorss)
+        }
         //Create the user
         const user = new User({ email, username, password })
         const errors = await validate(user)
         if(errors.length > 0)return res.status(400).json({errors})
         await user.save()
+
+
         //return the user
         return res.json(user)
     } catch(err) {
