@@ -1,5 +1,5 @@
 import { Request, Response, Router } from "express";
-import { User } from "../entities/User";
+import User from "../entities/User";
 import { isEmpty, validate } from 'class-validator'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
@@ -29,11 +29,12 @@ const register = async (req: Request, res: Response) => {
         if(Object.keys(errorss).length > 0){
             return res.status(400).json(errorss)
         }
+
         //Create the user
         const user = new User({ email, username, password })
         const errors = await validate(user)
         if(errors.length > 0)return res.status(400).json({errors})
-        await user.save()
+        await user.save() //Save to Database
 
 
         //return the user

@@ -5,6 +5,8 @@ import cors from 'cors';
 
 
 import authRoutes from './routes/auth';
+import postRoutes from './routes/posts';
+import subRoutes from './routes/subs';
 import trim from './middleware/trim';
 
 import express from 'express';
@@ -15,6 +17,7 @@ import cookieParser from 'cookie-parser'
 dotenv.config()
 
 const app = express();
+const PORT = process.env.PORT
 
 app.use(express.json());
 app.use(morgan('dev'));
@@ -23,11 +26,13 @@ app.use(cookieParser())
 
 app.use(cors())
 
-app.get('/', (req, res) => res.send('Hello World'))
+app.get('/', (_, res) => res.send('Hello World'))
 app.use('/api/auth', authRoutes)
+app.use('/api/posts', postRoutes)
+app.use('/api/subs', subRoutes)
 
-app.listen(5000, async() => {
-    console.log('Server Up at 5000')
+app.listen(PORT, async() => {
+    console.log(`Server Up at ${ PORT }`)
 
     try{
         await createConnection()
