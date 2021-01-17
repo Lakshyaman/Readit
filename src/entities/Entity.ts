@@ -1,6 +1,6 @@
 import { CreateDateColumn, UpdateDateColumn } from "typeorm";
 import { BaseEntity } from "typeorm";
-import { PrimaryGeneratedColumn, Column} from "typeorm";
+import { PrimaryGeneratedColumn} from "typeorm";
 import { classToPlain, Exclude } from 'class-transformer'
 
 
@@ -12,7 +12,7 @@ export default abstract class Entity extends BaseEntity {
 
 
     @CreateDateColumn()
-    createAt: Date
+    createdAt: Date
 
     @UpdateDateColumn()
     updatedAt: Date

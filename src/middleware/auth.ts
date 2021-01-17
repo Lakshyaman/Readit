@@ -8,7 +8,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
 
         if(!token) throw new Error('Unauthenticate')
 
-        const { username }: any = jwt.verify(token, process.env.JWT_SECRET) //it will handle its own error
+        const { username }: any = jwt.verify(token, process.env.JWT_SECRET!) //it will handle its own error
 
         const user = await User.findOne({ username })
 

@@ -11,6 +11,17 @@
       "emitDecoratorMetadata": true,
       "experimentalDecorators": true,
       "sourceMap": true,
-      "esModuleInterop": true
+      "esModuleInterop": true,
+      "noImplicitAny": true, //give error if not defined type on variables
+      "strictNullChecks": true,
+      "strictFunctionTypes": true,
+      "strictBindCallApply": true,
+      "noImplicitThis": true,
+      "alwaysStrict": true,
+      "noUnusedLocals": true,
+      "noUnusedParameters": true,
+      "noImplicitReturns": true,
+      "noFallthroughCasesInSwitch": true,
+      "resolveJsonModule": true
    }
 }

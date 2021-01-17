@@ -1,9 +1,5 @@
-import { IsEmail, Length } from "class-validator";
-import { BeforeInsert, CreateDateColumn, Index, ManyToOne, UpdateDateColumn, JoinColumn } from "typeorm";
-import { BaseEntity } from "typeorm";
-import {Entity as TOEntity, PrimaryGeneratedColumn, Column} from "typeorm";
-import bcrypt from 'bcrypt'
-import { classToPlain, Exclude } from 'class-transformer'
+import { BeforeInsert, Index, ManyToOne, JoinColumn } from "typeorm";
+import {Entity as TOEntity, Column} from "typeorm";
 
 import Entity from './Entity'
 import User from "./User";

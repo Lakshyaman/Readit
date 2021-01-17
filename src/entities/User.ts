@@ -2,7 +2,7 @@ import { IsEmail, Length } from "class-validator";
 import { BeforeInsert, Index, OneToMany } from "typeorm";
 import {Entity as TOEntity, Column} from "typeorm";
 import bcrypt from 'bcrypt'
-import { classToPlain, Exclude } from 'class-transformer'
+import { Exclude } from 'class-transformer'
 
 import Entity from './Entity'
 import Post from "./Post";

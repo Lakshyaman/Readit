@@ -1,14 +1,8 @@
-import { IsEmail, Length } from "class-validator";
-import { BeforeInsert, CreateDateColumn, Index, ManyToOne, UpdateDateColumn, JoinColumn, In, OneToMany } from "typeorm";
-import { BaseEntity } from "typeorm";
-import {Entity as TOEntity, PrimaryGeneratedColumn, Column} from "typeorm";
-import bcrypt from 'bcrypt'
-import { classToPlain, Exclude } from 'class-transformer'
+import { Index, ManyToOne, JoinColumn, OneToMany } from "typeorm";
+import {Entity as TOEntity, Column} from "typeorm";
 
 import Entity from './Entity'
 import User from "./User";
-import { makeid, slugify } from "../util/helpers";
-import { text } from "express";
 import Post from "./Post";
 
 @TOEntity('subs')
