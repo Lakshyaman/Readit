@@ -27,7 +27,7 @@ export default class Comment extends Entity {
     @JoinColumn({ name: 'username', referencedColumnName: 'username' })
     user: User
 
-    @ManyToOne(() => Post,post => post.comments, { nullable: false })
+    @ManyToOne(() => Post,post => post.comments , { nullable: false })
     post: Post
 
     @BeforeInsert()
