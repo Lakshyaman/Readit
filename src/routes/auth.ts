@@ -7,6 +7,14 @@ import cookie from 'cookie'
 
 import auth from '../middleware/auth'
 
+const mapErrors = (errors: Object[]) => {
+    
+    return errors.reduce((prev: any, err: any) => {
+        prev[err.property] = Object.entries(err.constraints)[0][1]
+        return prev
+    }, {})
+}
+
 
 const register = async (req: Request, res: Response) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
@@ -33,7 +41,10 @@ const register = async (req: Request, res: Response) => {
         //Create the user
         const user = new User({ email, username, password })
         const errors = await validate(user)
-        if(errors.length > 0)return res.status(400).json({errors})
+        if(errors.length > 0){
+            
+            return res.status(400).json(mapErrors(errors))
+        }
         await user.save() //Save to Database
 
 
