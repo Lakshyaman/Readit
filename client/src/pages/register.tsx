@@ -1,6 +1,6 @@
 import { FormEvent, useState } from 'react';
 import Head from 'next/head'
-import Link from 'next/link'
+import Link from 'next/Link'
 import Axios from 'axios';
 import classNames from 'classnames'
 import InputGroup from '../components/inputGroup'
@@ -35,7 +35,7 @@ export default function Register() {
   }
 
   return (
-    <div className="flex">
+    <div className="flex bg-white">
       <Head>
         <title>Register</title>
       </Head>
