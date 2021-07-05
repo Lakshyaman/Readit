@@ -70,7 +70,7 @@ export default function Register() {
         <small>
           New to Readit?
           <Link href="/register">
-            <a className="ml-1 text-blue-500 uppercase">Sing Up</a>
+            <a className="ml-1 text-blue-500 uppercase">Sign Up</a>
           </Link>
         </small>
       </div>

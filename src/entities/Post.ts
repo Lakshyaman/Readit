@@ -1,4 +1,4 @@
-import { BeforeInsert, Index, ManyToOne, JoinColumn, OneToMany } from "typeorm";
+import { BeforeInsert, Index, ManyToOne, JoinColumn, OneToMany, AfterLoad } from "typeorm";
 import {Entity as TOEntity, Column} from "typeorm";
 
 import Entity from './Entity'
@@ -6,6 +6,7 @@ import User from "./User";
 import { makeid, slugify } from "../util/helpers";
 import Sub from "./Sub";
 import Comment from "./Comment";
+import { Expose } from "class-transformer";
 
 @TOEntity('posts')
 export default class Post extends Entity {
@@ -32,6 +33,9 @@ export default class Post extends Entity {
     @Column()
     subName: string
 
+    @Column()
+    username: string
+
     @ManyToOne(() => User, user => user.posts)
     @JoinColumn({ name: 'username', referencedColumnName: 'username' })
     user: User;
@@ -42,6 +46,16 @@ export default class Post extends Entity {
 
     @OneToMany(() => Comment, comment => comment.post)
     comments: Comment[]
+
+    @Expose() get url(): string {
+        return `/r/${this.subName}/${this.identifier}/${this.slug}`
+    }
+
+    // protected url: string
+    // @AfterLoad()
+    // createFields() {
+    //     this.url = `/r/${this.subName}/${this.identifier}/${this.slug}`
+    // }
 
     @BeforeInsert()
     makeIdAndSlog() {
